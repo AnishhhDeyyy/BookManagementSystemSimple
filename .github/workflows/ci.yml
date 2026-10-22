@@ -58,7 +58,7 @@ jobs:
         run: pnpm run db:generate
 
       - name: Apply database migrations
-        run: pnpm exec prisma migrate deploy
+        run: pnpm exec prisma migrate deploy --config prisma7.config.ts
 
       - name: Build TypeScript
         run: pnpm build
