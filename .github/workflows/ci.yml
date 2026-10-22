@@ -37,4 +37,7 @@ jobs:
         run : pnpm run db:generate
 
       - name: Build TypeScript
-        run:  pnpm run build
+        run:  pnpm build 
+        
+      - name: Run tests
+        run: pnpm test
