@@ -1,0 +1,38 @@
+name: Book Management System CI
+
+on:
+  push: 
+   branches: [develop,main]
+  
+  pull_request:
+    branches: [develop,main]
+  
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Validate and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run : pnpm run db:generate
+
+      - name: Build TypeScript
+        run:  pnpm run build
