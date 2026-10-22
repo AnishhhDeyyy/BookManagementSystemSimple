@@ -15,6 +15,12 @@ jobs:
     name: Validate and Build
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: "postgresql://postgres:Anish@2002@localhost:5432/bookmanagement?schema=public"
+      JWT_SECRET: Ansh@21551515$1525151515$45
+      JWT_EXPIRES_IN: "15m"
+      PORT: 3000
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
