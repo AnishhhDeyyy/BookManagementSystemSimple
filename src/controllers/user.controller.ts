@@ -22,6 +22,8 @@ export const registerUser: RequestHandler<{}, {}, RegisterTypeInput> = async (re
 export const getByUserId: RequestHandler<{ id: string }> = async (req, res, next) => {
     try {
         const user = await getUserById(req.params.id);
+        console.log("USER",user);
+        
         res.status(200).json({
             success: true,
             message: "User Data Fetched Successfully",
