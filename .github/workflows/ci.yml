@@ -31,7 +31,7 @@ jobs:
           --health-retries 5
 
     env:
-      DATABASE_URL: "postgresql://postgres:Anish@2002@localhost:5432/bookmanagement?schema=public"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/bookmanagement_test"
       JWT_SECRET: Ansh@21551515$1525151515$45
       JWT_EXPIRES_IN: "15m"
       PORT: 3000
