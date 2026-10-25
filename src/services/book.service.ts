@@ -2,6 +2,7 @@ import { prisma } from "../config/prisma";
 import { HttpError } from "../utils/http-error";
 import { createBookInput } from "../validators/book.validator";
 import { updateBookInput } from "../validators/updatebook.validator";
+import { publishNotification } from "./notification.service";
 
 export async function createBookService(input: createBookInput) {
     
@@ -13,6 +14,15 @@ export async function createBookService(input: createBookInput) {
             publishedAt: input.publishedAt!
         }
     })
+    try{
+        await publishNotification(
+            "New Book Created",
+            `A New Book "${book.title}" by ${book.author} has been added`
+        );
+    }catch(err){
+        console.log("Failed to publish book",err);
+        
+    }
     return book;
 }
 
